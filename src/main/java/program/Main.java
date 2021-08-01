@@ -1,5 +1,7 @@
 package program;
 
+import builder.CoinFactory;
+import builder.Coins;
 import coin.Coin;
 import coin.ILS;
 import coin.USD;
@@ -14,26 +16,34 @@ public class Main {
         System.out.println("Welcome to currency converter");
         String s = "Y";
         Scanner chooseOption = new Scanner(System.in);  // Create a Scanner object - chooseOption
-        ArrayList<Double> resultList = new ArrayList<>();
+        ArrayList<Result> resultList = new ArrayList<>();
         do {
 
             Coin coin = null;
+            String action = null;
 
             s = otherOptionWrongChoice(chooseOption);
 
             if (s.equals("1")) {
-                coin = new ILS();
+                coin = CoinFactory.getCoinInstance(Coins.ILS);
                 System.out.println("Dollars to Shekels");
-
+                action="USD to ILS";
             } else if (s.equals("2")) {
-                coin = new USD();
+                coin = CoinFactory.getCoinInstance(Coins.USD);
                 System.out.println("Shekels to Dollars");
+                action="ILS to USD";
+            } else if(s.equals("3")) {
+                coin = CoinFactory.getCoinInstance(Coins.EUR);
+                System.out.println("Shekels to EUR");
+                action="ILS to EUR";
             }
 
             double y = notNumericAmount(chooseOption); // Read user input - y = amount to convert
-            double result = coin.calculate(y);
-            System.out.println(result);
-            resultList.add(result);
+            double resultValue = coin.calculate(y);
+
+            Result result1=new Result(resultValue, action );
+            System.out.println(result1);
+            resultList.add(result1);
             s = otherOptionYN(chooseOption);
 
         }
@@ -45,7 +55,7 @@ public class Main {
 
             FileWriter coinText= new FileWriter("C:\\Users\\ereuv\\Desktop\\results.txt");
             coinText.write("These are the converted amounts:\n");
-            for (Double amount: resultList){
+            for (Result amount: resultList){
                 coinText.write(amount.toString());
                 coinText.write("\n");
             }
@@ -71,8 +81,8 @@ public class Main {
 
     public static String otherOptionWrongChoice(Scanner t) {
         String s = "";
-        while (!s.equalsIgnoreCase("1") && (!s.equalsIgnoreCase("2"))) {
-            System.out.println("Please choose an option (1/2)");
+        while (!s.equalsIgnoreCase("1") && (!s.equalsIgnoreCase("2")) && (!s.equalsIgnoreCase("3"))) {
+            System.out.println("Please choose an option (1/2/3)");
             s = t.nextLine();
 
         }
