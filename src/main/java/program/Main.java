@@ -36,7 +36,6 @@ public class Main {
             resultList.add(result);
             s = otherOptionYN(chooseOption);
 
-
         }
         while (s.equalsIgnoreCase("y"));
         System.out.println("Thanks for using our currency converter");
