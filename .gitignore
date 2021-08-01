@@ -1,0 +1,9 @@
+/target/classes/coin/Coin.class
+/target/classes/builder/CoinFactory$1.class
+/target/classes/builder/CoinFactory.class
+/target/classes/builder/Coins.class
+/target/classes/coin/ICalculate.class
+/target/classes/coin/ILS.class
+/target/classes/program/Main.class
+/target/test-classes/testingcoin/TestingCoin.class
+/target/classes/coin/USD.class

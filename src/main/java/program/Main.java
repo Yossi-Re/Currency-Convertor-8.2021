@@ -25,13 +25,9 @@ public class Main {
                 coin = new ILS();
                 System.out.println("Dollars to Shekels");
 
-
-
             } else if (s.equals("2")) {
                 coin = new USD();
                 System.out.println("Shekels to Dollars");
-
-
             }
 
             double y = notNumericAmount(chooseOption); // Read user input - y = amount to convert
